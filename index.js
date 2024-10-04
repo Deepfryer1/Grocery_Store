@@ -15,15 +15,34 @@
  */
 function logNames(items) {
   // TODO: use `forEach`
+  items.forEach((element) => console.log(element))
 }
-
 /**
  * @param {Item[]} items - array of items
  * @returns {string[]} an array of item names in all uppercase
  */
 function getUppercaseNames(items) {
   // TODO: use `map`
+
+  let uppercaseNames = items.map((element) => {
+    return element.name.toString().toUpperCase();
+});
+  return uppercaseNames;
 }
+const uppercaseFunction = (items) => {
+  let uppercaseNames = items.map((object) => {
+    return object.category.toString().toUpperCase();
+  });
+  return uppercaseNames
+}
+
+//getUppercaseNames(testArray);
+
+
+
+// let testArray = ["dog", "cat", "turtle", "goat"];
+// upperCasedArray(testArray);
+
 
 /**
  * @param {Item[]} items - array of items
@@ -32,6 +51,8 @@ function getUppercaseNames(items) {
  */
 function getItemById(items, id) {
   // TODO: use `find`
+  return items.find((item) => item.id === id);
+  
 }
 
 /**
@@ -40,7 +61,8 @@ function getItemById(items, id) {
  * @returns {number} the price of the item named `name`
  */
 function getItemPriceByName(items, name) {
-  // TODO: use a loop!
+  let item = items.find((item) => item.name === name);
+  return item.price
 }
 
 /**
@@ -50,6 +72,8 @@ function getItemPriceByName(items, name) {
  */
 function getItemsByCategory(items, category) {
   // TODO: use `filter`
+  let itemsInCategory = items.filter((item)=> item.category===category);
+  return itemsInCategory
 }
 
 /**
@@ -58,6 +82,9 @@ function getItemsByCategory(items, category) {
  */
 function countItems(items) {
   // TODO: use `reduce`
+  let totalQty = items.reduce((accumulator, item) => 
+    accumulator + item.quantity , 0)
+  return totalQty
 }
 
 /**
@@ -66,7 +93,14 @@ function countItems(items) {
  */
 function calculateTotalPrice(items) {
   // TODO: use `reduce`
+  let totalPrice = items.reduce((accumulator, item) => 
+    accumulator + (item.price * item.quantity)  , 0)
+  return totalPrice
+  
 }
+
+
+
 
 // --------------------- DO NOT CHANGE THE CODE BELOW ------------------------ //
 
@@ -81,11 +115,16 @@ const INVENTORY = [
   { id: 8, name: "sourdough", price: 5.5, category: "grains", quantity: 81 },
 ];
 
+
+
 console.log("Welcome! We carry the following items:");
 logNames(INVENTORY);
 
 console.log("Here are the names again in all uppercase:");
 console.log(getUppercaseNames(INVENTORY));
+
+console.log("Here are the uppercase categories");
+console.log(uppercaseFunction(INVENTORY));
 
 console.log(`In total, we have ${countItems(INVENTORY)} items in stock.`);
 
